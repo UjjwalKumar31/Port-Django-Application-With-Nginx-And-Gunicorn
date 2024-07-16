@@ -24,3 +24,8 @@ services:
       - "80:80"
     depends_on:
       - my_site
+
+## Command To Put At Console To Execute
+  # docker-compose build
+  # docker-compose up -d
+  # docker-compose logs {container_name}
