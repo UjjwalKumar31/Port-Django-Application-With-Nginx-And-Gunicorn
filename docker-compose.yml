@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  my_site:
+    build: ./my_site  # This should point to the directory containing your Dockerfile
+    container_name: my_site
+    restart: always
+    volumes:
+      - ./my_site/:/app/  # Mount your local app directory into the container's /app/ directory
+    ports:
+      - "8000:8000"   # Map port 8000 on the host to port 8000 on the container
+    command: gunicorn my_site.wsgi:application --bind 0.0.0.0:8000
+    # python manage.py runserver 0.0.0.0:8000
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro  # Mount nginx.conf into the Nginx container
+    ports:
+      - "80:80"
+    depends_on:
+      - my_site
