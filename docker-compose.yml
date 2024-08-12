@@ -8,6 +8,7 @@ services:
     restart: always
     volumes:
       - ./my_site/:/app/  # Mount your local app directory into the container's /app/ directory
+      - static_volume:/staticfiles
     ports:
       - "8000:8000"   # Map port 8000 on the host to port 8000 on the container
     command: gunicorn my_site.wsgi:application --bind 0.0.0.0:8000
@@ -20,7 +21,11 @@ services:
     restart: always
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro  # Mount nginx.conf into the Nginx container
+      - static_volume:/staticfiles  # Mount the static files directory from the app service
     ports:
       - "80:80"
     depends_on:
       - my_site
+
+volumes:
+  static_volume:

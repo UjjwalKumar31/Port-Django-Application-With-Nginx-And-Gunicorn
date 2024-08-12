@@ -4,3 +4,6 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     return HttpResponse("HELLO THIS IS A VIEW INSIDE MY_APP - Coming Along<h1>  Nginx And Gunicorn </h1>")
+
+def main(request):
+    return render(request, 'my_app/main.html')
