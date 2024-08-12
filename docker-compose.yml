@@ -29,3 +29,8 @@ services:
 
 volumes:
   static_volume:
+  
+## Command To Put At Console To Execute
+  # docker-compose build
+  # docker-compose up -d
+  # docker-compose logs {container_name}
