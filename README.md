@@ -86,11 +86,12 @@ Gunicorn Handles Dynamic Content: Gunicorn processes the application logic and s
 Accessing http://127.0.0.1:8000 directly may not serve static files if not configured correctly. Ideally, this URL should be used only for debugging or development purposes, not in production.
 
 ### **Summary**
-**-- In Production:** Nginx should handle static files, and Gunicorn should handle dynamic content.
-**-- Configuration:** Ensure Nginx is set up to serve static files and proxy dynamic requests to Gunicorn.
-**-- Docker Compose:** Ensure volumes are correctly configured to share static files between services.
-**By following these steps and configurations, you ensure that static files are served efficiently by Nginx, and Gunicorn handles the application logic effectively.**
-**By ensuring that Nginx is properly configured to serve static files and proxy requests to Gunicorn, you can maintain a robust and efficient deployment setup.**
+- **In Production:** Nginx should handle static files, and Gunicorn should handle dynamic content.
+- **Configuration:** Ensure Nginx is set up to serve static files and proxy dynamic requests to Gunicorn.
+- **Docker Compose:** Ensure volumes are correctly configured to share static files between services.
+
+- **By following these steps and configurations, you ensure that static files are served efficiently by Nginx, and Gunicorn handles the application logic effectively.**
+- **By ensuring that Nginx is properly configured to serve static files and proxy requests to Gunicorn, you can maintain a robust and efficient deployment setup.**
 
 
 ### **Commands To Follow:**
