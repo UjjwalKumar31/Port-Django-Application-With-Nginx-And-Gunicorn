@@ -60,39 +60,39 @@ Integrating Django with Nginx and Gunicorn offers a robust and scalable solution
 
 
 
-NOTE : How static files are typically managed in a Django application deployed with Nginx and Gunicorn.
+### **NOTE : How static files are typically managed in a Django application deployed with Nginx and Gunicorn.**
 
 There might be some confusion or misconfiguration between how static files are served in different environments (Nginx vs. Gunicorn). When you access your application directly through Gunicorn (http://127.0.0.1:8000/my_app/main/), static files should ideally be served by Nginx, which is generally set up as a reverse proxy for handling static files efficiently.
 
-1. Understanding Static File Serving
+### 1. **Understanding Static File Serving**
 Django Development Server: During development, Django's built-in server serves static files. However, this is not suitable for production due to performance and security concerns.
 
 Gunicorn: Gunicorn (Green Unicorn) is a WSGI HTTP server for running Python web applications. It’s designed to handle application logic and requests but is not optimized for serving static files.
 
 Nginx: Nginx is a high-performance web server and reverse proxy. In a production setup, it serves static files efficiently and forwards dynamic requests to Gunicorn.
 
-2. How Static Files are Served
+### 2. **How Static Files are Served**
 In Production
 Nginx Handles Static Files: Nginx is configured to serve static files directly. This includes CSS, JavaScript, images, and other assets. By serving static files directly, Nginx can handle large numbers of requests efficiently and offload this responsibility from Gunicorn.
 
 Gunicorn Handles Dynamic Content: Gunicorn processes the application logic and serves the dynamic parts of the application, such as rendering HTML templates, processing forms, and interacting with the database.
 
-Configuration Flow
-Nginx Configuration: Nginx configuration specifies how static files should be served and how to proxy requests to the application server (Gunicorn).
+### **Configuration Flow**
+**Nginx Configuration:** Nginx configuration specifies how static files should be served and how to proxy requests to the application server (Gunicorn).
 
-Django Configuration: Django settings define where static files are collected and how they should be served. This setup includes the STATIC_URL and STATIC_ROOT settings.
+**Django Configuration:** Django settings define where static files are collected and how they should be served. This setup includes the STATIC_URL and STATIC_ROOT settings.
 
-Direct Gunicorn Access
+### **Direct Gunicorn Access**
 Accessing http://127.0.0.1:8000 directly may not serve static files if not configured correctly. Ideally, this URL should be used only for debugging or development purposes, not in production.
 
-Summary
--- In Production: Nginx should handle static files, and Gunicorn should handle dynamic content.
--- Configuration: Ensure Nginx is set up to serve static files and proxy dynamic requests to Gunicorn.
--- Docker Compose: Ensure volumes are correctly configured to share static files between services.
-By following these steps and configurations, you ensure that static files are served efficiently by Nginx, and Gunicorn handles the application logic effectively.
-By ensuring that Nginx is properly configured to serve static files and proxy requests to Gunicorn, you can maintain a robust and efficient deployment setup.
+### **Summary**
+**-- In Production:** Nginx should handle static files, and Gunicorn should handle dynamic content.
+**-- Configuration:** Ensure Nginx is set up to serve static files and proxy dynamic requests to Gunicorn.
+**-- Docker Compose:** Ensure volumes are correctly configured to share static files between services.
+**By following these steps and configurations, you ensure that static files are served efficiently by Nginx, and Gunicorn handles the application logic effectively.**
+**By ensuring that Nginx is properly configured to serve static files and proxy requests to Gunicorn, you can maintain a robust and efficient deployment setup.**
 
 
-Commands To Follow:
+### **Commands To Follow:**
 docker-compose up --build  [docker-compose build + docker-compose up] 
 docker-compose down
